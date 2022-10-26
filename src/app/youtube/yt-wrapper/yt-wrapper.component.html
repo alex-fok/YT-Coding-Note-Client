@@ -1,1 +1,4 @@
-<app-yt-video></app-yt-video>
+<app-yt-video
+  (currentUpdated)="updateCurrent($event)"
+></app-yt-video>
+<p>{{current | secInHMS}}</p>

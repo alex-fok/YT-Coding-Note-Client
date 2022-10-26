@@ -4,11 +4,13 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 
 import { YtWrapperComponent } from './yt-wrapper/yt-wrapper.component';
 import { YtVideoComponent } from './yt-video/yt-video.component';
+import { SecInHMSPipe } from '../shared/sec-in-hms.pipe';
 
 @NgModule({
   declarations: [
     YtWrapperComponent,
-    YtVideoComponent
+    YtVideoComponent,
+    SecInHMSPipe
   ],
   imports: [
     CommonModule,
