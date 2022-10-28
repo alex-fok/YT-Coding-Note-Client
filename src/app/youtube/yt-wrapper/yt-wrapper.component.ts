@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TimeSegmentService } from 'src/app/services/time-segment.service';
 
 @Component({
   selector: 'app-yt-wrapper',
@@ -6,12 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./yt-wrapper.component.scss']
 })
 export class YtWrapperComponent implements OnInit {
-  current = 0;
-  constructor() { }
+  constructor(public timeSegmentService: TimeSegmentService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
   updateCurrent(value: number) {
-    this.current = Math.trunc(value)
+    this.timeSegmentService.update(value)
   }
 }
