@@ -7,9 +7,13 @@ import { TimeSegmentService } from 'src/app/services/time-segment.service';
   styleUrls: ['./yt-wrapper.component.scss']
 })
 export class YtWrapperComponent implements OnInit {
+  timeSegment = 0;
+
   constructor(public timeSegmentService: TimeSegmentService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.timeSegmentService.getSegIdxSubject().subscribe(t => this.timeSegment = t)
+  }
   updateCurrent(value: number) {
     this.timeSegmentService.update(value)
   }
