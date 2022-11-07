@@ -1,11 +1,7 @@
 import { Component, OnInit, Input, Renderer2, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { ContentService } from '../services/content.service';
-import { EditorView, lineNumbers } from '@codemirror/view';
 import { Subject } from 'rxjs';
-import { EditorState } from '@codemirror/state';
 import { EditorViewService } from '../services/editor-view.service';
-
-const defaultExt = { extensions: [lineNumbers()] }
 
 @Component({
   selector: 'app-code-editor',
@@ -29,8 +25,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
     private contentService: ContentService,
     private editorViewService: EditorViewService,
     private renderer: Renderer2,
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
     this.contentUpdater$.subscribe(fileName => {
