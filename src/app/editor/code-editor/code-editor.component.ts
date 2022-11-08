@@ -29,7 +29,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
       timeSegment: this._timeSegment
     });
   };
-  private view!: HTMLElement;
+  private view: HTMLElement;
   private viewUpdater$ = new Subject<{fileName: string, timeSegment: number}>();
   private _timeSegment = 0;
   private _fileName = '';
@@ -38,11 +38,12 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
     private contentService: ContentService,
     private editorViewService: EditorViewService,
     private renderer: Renderer2,
-  ) { }
-
+  ) {
+    this.view = this.editorViewService.getView();
+  }
   ngOnInit(): void {
-    this.viewUpdater$.subscribe(({fileName, timeSegment}) => {
-      const content = this.contentService.getContent(fileName, timeSegment);
+    this.viewUpdater$.subscribe(async({fileName, timeSegment}) => {
+      const content = await this.contentService.getContent(fileName, timeSegment);
       this.view = this.editorViewService.getView(content);
     });
     this.viewUpdater$.next({
@@ -50,7 +51,6 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
       timeSegment: this._timeSegment
     });
   }
-
   ngAfterViewInit(): void {
     this.renderer.appendChild(this.container.nativeElement, this.view);
   }
