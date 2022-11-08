@@ -9,18 +9,31 @@ import { EditorViewService } from '../services/editor-view.service';
   styleUrls: ['./code-editor.component.scss']
 })
 export class CodeEditorComponent implements OnInit, AfterViewInit {
-  private view!: HTMLElement;
-  private contentUpdater$ = new Subject<string>();
   @ViewChild('editorContainer', {static: false}) container!: ElementRef;
   
+  @Input()
+  get timeSegment(): number { return this._timeSegment; }
+  set timeSegment(t: number) {
+    this._timeSegment = t;
+    this.viewUpdater$.next({
+      fileName: this._fileName,
+      timeSegment: this._timeSegment
+    });
+  } 
   @Input()
   get fileName(): string { return this._fileName };
   set fileName(fname: string) {
     this._fileName = fname;
-    this.contentUpdater$.next(fname);
+    this.viewUpdater$.next({
+      fileName: fname,
+      timeSegment: this._timeSegment
+    });
   };
-  private _fileName: string = '';
-   
+  private view!: HTMLElement;
+  private viewUpdater$ = new Subject<{fileName: string, timeSegment: number}>();
+  private _timeSegment = 0;
+  private _fileName = '';
+  
   constructor(
     private contentService: ContentService,
     private editorViewService: EditorViewService,
@@ -28,15 +41,17 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.contentUpdater$.subscribe(fileName => {
-      const content = this.contentService.getContent(fileName);
-      this.editorViewService.getView(content);
+    this.viewUpdater$.subscribe(({fileName, timeSegment}) => {
+      const content = this.contentService.getContent(fileName, timeSegment);
+      this.view = this.editorViewService.getView(content);
     });
-    this.contentUpdater$.next(this.fileName);
+    this.viewUpdater$.next({
+      fileName: this._fileName,
+      timeSegment: this._timeSegment
+    });
   }
 
   ngAfterViewInit(): void {
-    this.view = this.editorViewService.getView();
     this.renderer.appendChild(this.container.nativeElement, this.view);
   }
 }

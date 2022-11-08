@@ -4,12 +4,24 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ContentService {
-  private content: Record<string, string> = {
-    default: 'This is the default content\nLine2\nLine3'
+  private content: Record<string, Record<string, string>> = {
+    '0': {
+      'default': 'This is the default content\ndefault-0'
+    },
+    '20': {
+      'default': 'This is the default content\ndefault-20'
+    },
+    '40': {
+      'default': 'This is the default content\ndefault-40',
+    },
+    '60': {
+      'default': 'This is the default content\ndefault-60',
+    }
   }
   constructor() { }
 
-  getContent(fileName: string): string {
-    return this.content[fileName] || ''
+  getContent(fileName: string, timeSegment: number): string {
+    
+    return this.content[timeSegment][fileName] || ''
   }
 }

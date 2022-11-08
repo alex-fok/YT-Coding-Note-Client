@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContentService } from '../services/content.service';
+import { TimeSegmentService } from 'src/app/services/time-segment.service';
 
 @Component({
   selector: 'app-editor-ui',
@@ -7,10 +7,14 @@ import { ContentService } from '../services/content.service';
   styleUrls: ['./editor-ui.component.scss']
 })
 export class EditorUiComponent implements OnInit {
-  default = 'default';
-  constructor() { }
+  timeSegment = 0;
+  selected = 'default';
+
+  constructor(private timeSegmentService: TimeSegmentService) { }
 
   ngOnInit(): void {
+    this.timeSegmentService.getSegIdxSubject().subscribe(t => {
+      this.timeSegment = t
+    })
   }
-
 }
