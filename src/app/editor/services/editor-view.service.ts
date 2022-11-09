@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import { EditorView, EditorViewConfig, lineNumbers } from '@codemirror/view';
+import { EditorView, EditorViewConfig, lineNumbers, highlightActiveLineGutter } from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
 
 const config: EditorViewConfig = {
-  extensions: [lineNumbers()]
+  extensions: [
+    lineNumbers(),
+    highlightActiveLineGutter()
+  ]
 }
 
 @Injectable({
@@ -11,7 +14,10 @@ const config: EditorViewConfig = {
 })
 export class EditorViewService {
   view = new EditorView({...config});
-  constructor() { }
+  
+  constructor() {
+    this.view.dom.style.height = '100%';
+  }
 
   getView(content?: string): HTMLElement {
     if (content)

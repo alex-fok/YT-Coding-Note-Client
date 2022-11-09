@@ -12,7 +12,7 @@ import { EditorUiComponent } from './editor-ui/editor-ui.component';
     CommonModule
   ],
   exports: [
-    EditorUiComponent 
+    EditorUiComponent
   ]
 })
 export class EditorModule { }

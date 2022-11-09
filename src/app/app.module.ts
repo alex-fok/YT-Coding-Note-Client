@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { YoutubeModule } from './youtube/youtube.module';
-import { AppComponent } from './app.component';
 import { EditorModule } from './editor/editor.module';
+import { FileListModule } from './file-list/file-list.module';
+
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -11,7 +13,8 @@ import { EditorModule } from './editor/editor.module';
   imports: [
     BrowserModule,
     YoutubeModule,
-    EditorModule
+    EditorModule,
+    FileListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,18 @@
+.appContainer {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+.leftPanel {
+  display: flex;
+  flex-direction: column;
+}
+app-file-list-panel {
+  flex-grow: 1;
+}
+app-editor-ui {
+  display: flex;
+  flex-grow: 1;
+  margin-left: 5px;
+  margin-right: 15px;
+}
