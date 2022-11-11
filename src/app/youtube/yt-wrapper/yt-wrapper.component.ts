@@ -4,7 +4,7 @@ import { TimeSegmentService } from 'src/app/services/time-segment.service';
 @Component({
   selector: 'app-yt-wrapper',
   templateUrl: './yt-wrapper.component.html',
-  styleUrls: ['./yt-wrapper.component.scss']
+  styleUrls: ['./yt-wrapper.component.sass']
 })
 export class YtWrapperComponent implements OnInit {
   timeSegment = 0;

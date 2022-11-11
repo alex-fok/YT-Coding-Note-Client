@@ -6,7 +6,7 @@ import { EditorViewService } from '../services/editor-view.service';
 @Component({
   selector: 'app-code-editor',
   templateUrl: './code-editor.component.html',
-  styleUrls: ['./code-editor.component.scss']
+  styleUrls: ['./code-editor.component.sass']
 })
 export class CodeEditorComponent implements OnInit, AfterViewInit {
   @ViewChild('editorContainer', {static: false}) container!: ElementRef;

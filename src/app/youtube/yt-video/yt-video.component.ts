@@ -6,7 +6,7 @@ let isReady = false;
 @Component({
   selector: 'app-yt-video',
   templateUrl: './yt-video.component.html',
-  styleUrls: ['./yt-video.component.scss']
+  styleUrls: ['./yt-video.component.sass']
 })
 
 export class YtVideoComponent implements OnInit, OnDestroy {

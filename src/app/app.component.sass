@@ -1,0 +1,21 @@
+@import 'mixins'
+@import 'classes'
+
+.appContainer 
+  @include flex(row)
+  min-height: 100vh
+  align-items: stretch
+
+layout-frame
+  @include flex(column)
+  padding: 5px
+
+app-yt-wrapper
+  margin-top: 5px
+
+app-file-list-panel
+  flex-grow: 1
+
+app-editor-ui 
+  @include flex(column)
+  flex-grow: 1

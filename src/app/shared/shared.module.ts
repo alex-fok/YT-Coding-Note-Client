@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { SecInHMSPipe } from './pipes/sec-in-hms.pipe';
+import { FrameComponent } from './components/frame/frame.component';
 
 @NgModule({
   declarations: [
-    SecInHMSPipe
+    SecInHMSPipe,
+    FrameComponent
   ],
   exports: [
-    SecInHMSPipe
+    SecInHMSPipe,
+    FrameComponent
   ]
 })
 
