@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { FileNameService } from 'src/app/services/file-name.service';
 
-type fileNameDB = {id: number, name: string, file: string, tSeg: number}
 type fileDB = {id: number, file: string, content: string}
 
 @Injectable({
@@ -8,20 +8,27 @@ type fileDB = {id: number, file: string, content: string}
 })
 export class ContentService {
   private fileNames!: Record<string, Record<string, string>>;
-  
-  constructor() { }
+  private videoId = '';
+
+  constructor(private fileNameService: FileNameService) { }
   async getContent(fileName: string, timeSegment: number): Promise<string> {
-    if (!this.fileNames) await this.initFileNames()
-    return this.getFile(this.fileNames[timeSegment][fileName]) || ''
+    if (!this.videoId) return '';
+    if (!this.fileNames) await this.getFileNames();
+    return this.getFile(this.fileNames[timeSegment][fileName]) || '';
   }
-  private async initFileNames() {
-    const files: fileNameDB[] = await fetch('http://localhost:3000/fileNames').then(results => results.json());
-    const tmp:Record<string, Record<string, string>> = {}
+  updateVideoId(id: string) {
+    this.videoId = id
+  }
+  private async getFileNames() {
+    if (!this.videoId) return;
+    const files = await this.fileNameService.getFileNames(this.videoId);
+    const tmp:Record<string, Record<string, string>> = {};
+
     files.forEach(f => {
-      if (!tmp[f.tSeg]) tmp[f.tSeg] = {}
-      tmp[f.tSeg][f.name] = f.file
-    })
-    this.fileNames = tmp
+      if (!tmp[f.tSeg]) tmp[f.tSeg] = {};
+      tmp[f.tSeg][f.name] = f.file;
+    });
+    this.fileNames = tmp;
   }
   private async getFile(fileName: string) {
     const files: fileDB[] =

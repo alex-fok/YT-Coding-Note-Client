@@ -1,5 +1,5 @@
 /// <reference types="youtube" />
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 
 let isReady = false;
 
@@ -10,6 +10,7 @@ let isReady = false;
 })
 
 export class YtVideoComponent implements OnInit, OnDestroy {
+  @Input() videoId = '';
   @Output() currentUpdated = new EventEmitter<number>();  
   player: YT.Player | undefined;
   interval: NodeJS.Timer;

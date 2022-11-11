@@ -5,10 +5,16 @@
     {"id": 3, "file": "default-40", "content": "This is the default file\nTime=40s"},
     {"id": 4, "file": "default-60", "content": "This is the default file\nTime=60s"}
   ],
-  "fileNames": [
-    {"id": 1, "name": "default", "file": "default", "tSeg": 0},
-    {"id": 2, "name": "default", "file": "default-20", "tSeg": 20},
-    {"id": 3, "name": "default", "file": "default-40", "tSeg": 40},
-    {"id": 4, "name": "default", "file": "default-60", "tSeg": 60}
+  "videos": [
+    {
+      "id": 1, 
+      "videoId":"M7lc1UVf-VE",       
+      "fileNames": [
+        {"id": 1, "name": "default", "file": "default", "tSeg": 0},
+        {"id": 2, "name": "default", "file": "default-20", "tSeg": 20},
+        {"id": 3, "name": "default", "file": "default-40", "tSeg": 40},
+        {"id": 4, "name": "default", "file": "default-60", "tSeg": 60}
+      ]
+    }
   ]
 }

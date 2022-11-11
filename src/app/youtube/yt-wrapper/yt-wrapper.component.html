@@ -1,4 +1,5 @@
 <app-yt-video
-  (currentUpdated)="updateCurrent($event)"
+  videoId={{videoId}}
+  (currentUpdated)='updateCurrent($event)'
 ></app-yt-video>
 <p>Segment: {{timeSegment | secInHMS}}</p>
