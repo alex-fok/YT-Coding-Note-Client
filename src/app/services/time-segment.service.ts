@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { distinctUntilChanged, Subject } from 'rxjs';
+import { VideoInfoService } from './video-info.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +9,20 @@ export class TimeSegmentService {
   private allTimeSegments = [0, 20, 40, 60];
   private curr = { time: 0, segIdx: 0 }
   private updater$ = new Subject<number>();
-  private pipedUpdater$ = this.updater$.pipe(distinctUntilChanged());
   private segment$ = new Subject<number>();
 
-  constructor() {
-    this.pipedUpdater$.subscribe((t) => this.updateCurr(t))
+  constructor(private videoInfoService: VideoInfoService) {
+    this.updater$.pipe(distinctUntilChanged()).subscribe((t) => this.updateCurr(t))
+    this.videoInfoService.getVideoInfoSubject().subscribe((vidInfo) => {
+      const keys = Object.keys(vidInfo.fileStruct).map(k => +k)
+      keys.sort()
+      this.allTimeSegments = keys
+    })
   }
   update(timeVal: number) {
     this.updater$.next(timeVal)
   }
-  getSegIdxSubject() {
+  getSegSubject() {
     return this.segment$
   }
   private findNearest(timeVal: number): number {
