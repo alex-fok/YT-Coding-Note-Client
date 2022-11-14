@@ -13,7 +13,7 @@ export class EditorUiComponent implements OnInit {
   constructor(private timeSegmentService: TimeSegmentService) { }
 
   ngOnInit(): void {
-    this.timeSegmentService.getSegIdxSubject().subscribe(t => {
+    this.timeSegmentService.getSegSubject().subscribe(t => {
       this.timeSegment = t
     })
   }

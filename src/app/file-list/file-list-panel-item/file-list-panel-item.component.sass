@@ -1,0 +1,18 @@
+@mixin margin-y($num)
+  margin:
+    top: $num
+    bottom: $num
+
+div
+  @include margin-y(.5em)
+  padding: 2px 5px
+  
+  &:hover
+    background-color: #6c6c6c
+ul
+  list-style-type: none
+  padding-left: 1em
+  @include margin-y(.5em)
+
+.selected
+  background-color: #6c6c6c

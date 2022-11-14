@@ -1,0 +1,17 @@
+<div
+  [ngClass]="[
+    isFolder ? 'folder' : 'file',
+    isSelected ? 'selected' : ''
+  ]"
+  (click)="selectFile()"
+  >{{name}}</div>
+<ul *ngIf="isFolder">
+  <li *ngFor="let child of children">
+    <app-file-list-panel-item
+      [id] = child.id
+      [type] = child.type
+      [name] = child.name
+      
+    ></app-file-list-panel-item>
+  </li>
+</ul>

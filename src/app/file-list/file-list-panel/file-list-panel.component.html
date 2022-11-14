@@ -1,5 +1,9 @@
 <ul>
-  <li>
-    File name 1
+  <li *ngFor='let file of rootFiles'>
+    <app-file-list-panel-item
+      id = {{file.id}}
+      type= {{file.type}}
+      name = {{file.name}}
+    ></app-file-list-panel-item>
   </li>
 </ul>
