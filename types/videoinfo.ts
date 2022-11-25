@@ -1,28 +1,34 @@
-interface FSItem {
+export interface FileSysObj {
   id: string,
   type: 'file' | 'folder' | 'root',
   name: string,
+}
+
+interface FSDBObj extends FileSysObj {
   parent: string
 }
 
-interface FileDB extends FSItem {
+export interface FileDB extends FSDBObj {
   type: 'file',
-  file: string
+  itemId: string
 };
 
-interface FolderDB extends FSItem {
+interface FolderDB extends FSDBObj {
   type: 'folder',
-  children: string[]
+  subDirs: string[]
 };
 
-interface RootDB extends FSItem {
+interface RootDB extends FSDBObj {
   type: 'root',
-  children: string[]
+  subDirs: string[]
 }
-export type FileSysItem = FileDB | FolderDB | RootDB;
-export type FileStruct = Record <string, Record<string, FileSysItem>>;
+export type FileSysDBObj = FileDB | FolderDB | RootDB;
+// fileId: FileSysDBObj
+export type FileStruct = Record<string, FileSysDBObj>;
+// timestamp: FileStruct
+export type FileStructHist = Record<string, FileStruct>;
 export interface VideoDB {
   id: number,
   videoId: string,
-  fileStruct: FileStruct
+  fileStruct: FileStructHist
 }
