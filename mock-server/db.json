@@ -1,9 +1,10 @@
 {
   "files": [
-    {"id": 1, "name": "default", "file": "d0001", "content": "This is the default file\nTime=0s"},
-    {"id": 2, "name": "default-20", "file": "d0001", "content": "This is the default file\nTime=20s"},
-    {"id": 3, "name": "default-40", "file": "d0001", "content": "This is the default file\nTime=40s"},
-    {"id": 4, "name": "default-60", "file": "d0001", "content": "This is the default file\nTime=60s"}
+    {"id": "default", "fileId": "d0001", "content": "This is the default file\nTime=0s"},
+    {"id": "default-20", "fileId": "d0001", "content": "This is the default file\nTime=20s"},
+    {"id": "default-40", "fileId": "d0001", "content": "This is the default file\nTime=40s"},
+    {"id": "default-60", "fileId": "d0001", "content": "This is the default file\nTime=60s"},
+    {"id": "default-2-0", "fileId": "d0002", "content": "This is the default file 2\nTime=0s"}
   ],
   "videos": [
     {
@@ -12,36 +13,36 @@
       "fileStruct": {
         "0": {
           "/": {
-            "id": "/", "type": "root", "parent": "", "children": ["f0001"]
+            "id": "/", "type": "root", "parent": "", "subDirs": ["f0001"]
           },
           "d0001": {
-            "id": "d0001", "type": "file", "name": "default", "file": "default", "parent": "f0001"
+            "id": "d0001", "type": "file", "name": "default", "itemId": "default", "parent": "f0001"
           },
           "d0002": {
-            "id": "d0002", "type": "file", "name": "default", "file": "default-40", "parent": "f0001"
+            "id": "d0002", "type": "file", "name": "default", "itemId": "default-2-0", "parent": "f0001"
           },
           "f0001": {
-            "id": "f0001", "type": "folder", "name": "src", "parent": "/", "children": ["d0001", "d0002", "f0002"]
+            "id": "f0001", "type": "folder", "name": "src", "parent": "/", "subDirs": ["d0001", "d0002", "f0002"]
           },
           "f0002": {
-            "id": "f0002", "type": "folder", "name": "app", "parent": "f0001", "children": []
+            "id": "f0002", "type": "folder", "name": "app", "parent": "f0001", "subDirs": []
           }
         },
         "20": {
           "/": {
-            "id": "/", "type": "root", "parent": "", "children": ["f0001"]
+            "id": "/", "type": "root", "parent": "", "subDirs": ["f0001"]
           },
           "d0001": {
-            "id": "d0001", "type": "file", "name": "default", "file": "default-20", "parent": "f0001"
+            "id": "d0001", "type": "file", "name": "default", "itemId": "default-20", "parent": "f0001"
           },
           "d0002": {
-            "id": "d0002", "type": "file", "name": "default", "file": "default-40", "parent": "f0001"
+            "id": "d0002", "type": "file", "name": "default", "itemId": "default-2-0", "parent": "f0001"
           }, 
           "f0001": {
-            "id": "f0001", "type": "folder", "name": "src", "parent": "/", "children": ["d0001", "d0002", "f0002"]
+            "id": "f0001", "type": "folder", "name": "src", "parent": "/", "subDirs": ["d0001", "d0002", "f0002"]
           },
           "f0002": {
-            "id": "f0002", "type": "folder", "name": "app", "parent": "f0001", "children": []
+            "id": "f0002", "type": "folder", "name": "app", "parent": "f0001", "subDirs": []
           }
         }
       }
