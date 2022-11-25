@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FileStructService } from 'src/app/services/file-struct.service';
+import { FileDirectoryService } from 'src/app/services/file-directory.service';
 
 type FileSysObj = {id: string, type: 'file' | 'folder' | 'root', name: string}
 
@@ -10,13 +10,10 @@ type FileSysObj = {id: string, type: 'file' | 'folder' | 'root', name: string}
 })
 export class FileListPanelComponent implements OnInit {
   rootFiles: FileSysObj[] = [];
-  constructor(private fileStructService: FileStructService) { }
+  constructor(private fileDirService: FileDirectoryService) { }
 
  ngOnInit(): void {
-    const rootFiles = this.fileStructService.getChildren('/') || [];
-    this.rootFiles = rootFiles;
-    this.fileStructService.getDirectoryTreeSubject().subscribe(tree => {
-      console.log(tree['/'])
+    this.fileDirService.getDirTreeSubject().subscribe(tree => {
       this.rootFiles = tree['/'] || []
     })
   }

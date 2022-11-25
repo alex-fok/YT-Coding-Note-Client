@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FileDirectoryService } from 'src/app/services/file-directory.service';
 import { FileSelectionService } from 'src/app/services/file-selection.service';
-import { FileStructService } from 'src/app/services/file-struct.service';
-import type { FileSysItem } from 'types/videoinfo'
-
-type FileSysObj = { id: string, type: 'file' | 'folder' | 'root', name: string }
+import type { FileSysObj } from 'types/videoInfo'
 
 @Component({
   selector: 'app-file-list-panel-item',
@@ -14,32 +12,36 @@ export class FileListPanelItemComponent implements OnInit {
   @Input() id = '';
   @Input() type = 'file';
   @Input() name = '';
-  isFolder = false;
+  isFile = true;
   isSelected = false;
-  children:FileSysObj[] = []
+  subDirs:FileSysObj[] = [];
 
   constructor(
-    private fileStructService: FileStructService,
+    private fileDirService: FileDirectoryService,
     private fileSelectionService: FileSelectionService
   ) { }
 
   ngOnInit(): void {
-    const children: FileSysObj[] = this.fileStructService.getChildren(this.id);
-    this.update(children);
-    this.fileStructService.getDirectoryTreeSubject().subscribe(children => {
-      this.update(children[this.id])
+    const subDirs: FileSysObj[] | undefined = this.fileDirService.getSubDirs(this.id);
+    this.update(subDirs);
+    this.fileDirService.getDirTreeSubject().subscribe(subDirs => {
+      this.update(subDirs[this.id]);
     })
-    this.fileSelectionService.getFileSelectedSubject().subscribe(id => {
-      console.log(`Compare ${this.id} and ${id}`)
-      this.isSelected = this.id === id ? true : false
+    this.fileSelectionService.getDirSelectedSubject().subscribe(id => {
+      this.isSelected = this.id === id ? true : false;
     }) 
   }
-  selectFile() {
-    this.fileSelectionService.updateFileSelected(this.id) 
+  selectDir() {
+    this.fileSelectionService.updateDirSelected(this.id);
   }
-  private update(children: FileSysObj[]) {
-    [this.children, this.isFolder] = children ? [children, true] : [[], false]; 
+  addFile() {
+    if (!this.isFile) return;
+    this.fileSelectionService.addFile(this.id);
   }
-
+  private update(subDirs: FileSysObj[]) {
+    [this.subDirs, this.isFile] = subDirs ? [subDirs, false] : [[], true]; 
+  }
+  printName() {
+    return this.isFile ? this.name : this.name + '/'
+  }
 }
-
