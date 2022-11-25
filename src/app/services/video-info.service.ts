@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { distinctUntilChanged, Subject } from 'rxjs';
-import type { VideoDB } from 'types/videoinfo';
+import type { VideoDB } from 'types/videoInfo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideoInfoService {
   private videoId$ = new Subject<string>();
-  private videoInfoSubject$ = new Subject<VideoDB>();
+  private videoInfo$ = new Subject<VideoDB>();
   constructor() {
     this.videoId$.pipe(distinctUntilChanged()).subscribe(id => this.updateVideoInfo(id))
   }
@@ -18,11 +18,10 @@ export class VideoInfoService {
       .then(arr => arr[0])
       .catch(err => {console.error(err)})
 
-//    console.log(vidInfo)
     if (vidInfo)
-      this.videoInfoSubject$.next(vidInfo)
+      this.videoInfo$.next(vidInfo)
   }
   getVideoInfoSubject() {
-    return this.videoInfoSubject$
+    return this.videoInfo$
   }
 }

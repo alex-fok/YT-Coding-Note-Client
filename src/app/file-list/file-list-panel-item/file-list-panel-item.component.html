@@ -1,17 +1,17 @@
 <div
   [ngClass]="[
-    isFolder ? 'folder' : 'file',
+    isFile ? 'file' : 'folder',
     isSelected ? 'selected' : ''
   ]"
-  (click)="selectFile()"
-  >{{name}}</div>
-<ul *ngIf="isFolder">
-  <li *ngFor="let child of children">
+  (click)="selectDir()"
+  (dblclick)="addFile()"
+  >{{printName()}}</div>
+<ul *ngIf="!isFile">
+  <li *ngFor="let subDir of subDirs">
     <app-file-list-panel-item
-      [id] = child.id
-      [type] = child.type
-      [name] = child.name
-      
+      [id] = subDir.id
+      [type] = subDir.type
+      [name] = subDir.name
     ></app-file-list-panel-item>
   </li>
 </ul>
