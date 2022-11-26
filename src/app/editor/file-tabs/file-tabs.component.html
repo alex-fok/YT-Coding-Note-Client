@@ -1,0 +1,11 @@
+<div>
+  <ng-container *ngFor="let file of filesOpened">
+    <span
+      [ngClass]="selectedId === file.id ? 'selected' : ''"
+      (click)="selectFile(file.id)"
+    >
+      {{file.name}}
+    </span>
+  </ng-container>
+  
+</div>

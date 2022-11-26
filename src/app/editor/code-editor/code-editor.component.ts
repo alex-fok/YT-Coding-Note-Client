@@ -1,30 +1,31 @@
-import { Component, OnInit, Input, Renderer2, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, Input, Renderer2, ElementRef } from '@angular/core';
 import { ContentService } from '../services/content.service';
 import { EditorViewService } from '../services/editor-view.service';
-import { FileSelectionService } from 'src/app/services/file-selection.service';
+import { FileDB } from 'types/videoInfo';
 
 @Component({
   selector: 'app-code-editor',
   templateUrl: './code-editor.component.html',
   styleUrls: ['./code-editor.component.sass']
 })
-export class CodeEditorComponent implements OnInit, AfterViewInit {
+export class CodeEditorComponent implements AfterViewInit {
   @ViewChild('editorContainer', {static: false}) container!: ElementRef;
+  @Input()
+  set selectedFile(file: FileDB | null) {
+    if (!file) return;
+    this.contentService.getContent(file.itemId)
+      .then(content => {
+        this.view = this.editorViewService.getView(content)
+      });
+  }
   private view: HTMLElement;
   
   constructor(
     private contentService: ContentService,
     private editorViewService: EditorViewService,
-    private fileSelectionService: FileSelectionService,
     private renderer: Renderer2,
   ) {
     this.view = this.editorViewService.getView();
-  }
-  ngOnInit(): void {
-    this.fileSelectionService.getFileViewedSubject().subscribe(async(selected) => {
-      const content = await this.contentService.getContent(selected.itemId);
-      this.view = this.editorViewService.getView(content)
-    })
   }
   ngAfterViewInit(): void {
     this.renderer.appendChild(this.container.nativeElement, this.view);

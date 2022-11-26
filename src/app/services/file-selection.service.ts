@@ -32,6 +32,9 @@ export class FileSelectionService {
   getFileViewedSubject() {
     return this.fileViewed$;
   }
+  getFilesOpenedSubject() {
+    return this.filesOpened$;
+  }
   updateDirSelected(id: string) {
     const obj = this.getDBObj(id)
     this.dirSelected$.next(id)
@@ -45,9 +48,10 @@ export class FileSelectionService {
     const obj = this.getDBObj(id);
     if (obj.type !== 'file') return;
     // typeof obj -> FileDB
-    this.filesOpened.push(obj);
-    this.filesOpened$.next(this.filesOpened);
-    
+    if (!this.filesOpened.find(file => file.id === obj.id)) {
+      this.filesOpened.push(obj);
+      this.filesOpened$.next(this.filesOpened);
+    }
     this.fileViewedId = obj.id;
     this.fileViewed$.next(obj);
   }

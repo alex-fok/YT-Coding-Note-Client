@@ -1,1 +1,6 @@
-<app-code-editor></app-code-editor>
+<app-file-tabs
+  (selectFileEvent) = "selectFile($event)"
+></app-file-tabs>
+<app-code-editor
+  [selectedFile]="selectedFile"
+></app-code-editor>

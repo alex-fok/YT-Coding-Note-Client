@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FileSelectionService } from 'src/app/services/file-selection.service';
+import { FileDB } from 'types/videoInfo';
 
 @Component({
   selector: 'app-editor-ui',
@@ -6,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./editor-ui.component.sass']
 })
 export class EditorUiComponent implements OnInit {
-  constructor() { }
+  selectedFile: FileDB | null = null
+  constructor(private fileSelectionService: FileSelectionService) { }
   
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.fileSelectionService.fileViewed$.subscribe(file => {
+      this.selectedFile = file;
+    })
+  }
+  selectFile(fileId: string) {
+    this.fileSelectionService.updateDirSelected(fileId);
+  }
 }
