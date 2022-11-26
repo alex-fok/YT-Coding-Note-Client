@@ -19,7 +19,7 @@
             "id": "d0001", "type": "file", "name": "default", "itemId": "default", "parent": "f0001"
           },
           "d0002": {
-            "id": "d0002", "type": "file", "name": "default", "itemId": "default-2-0", "parent": "f0001"
+            "id": "d0002", "type": "file", "name": "default-2", "itemId": "default-2-0", "parent": "f0001"
           },
           "f0001": {
             "id": "f0001", "type": "folder", "name": "src", "parent": "/", "subDirs": ["d0001", "d0002", "f0002"]
@@ -36,7 +36,7 @@
             "id": "d0001", "type": "file", "name": "default", "itemId": "default-20", "parent": "f0001"
           },
           "d0002": {
-            "id": "d0002", "type": "file", "name": "default", "itemId": "default-2-0", "parent": "f0001"
+            "id": "d0002", "type": "file", "name": "default-2", "itemId": "default-2-0", "parent": "f0001"
           }, 
           "f0001": {
             "id": "f0001", "type": "folder", "name": "src", "parent": "/", "subDirs": ["d0001", "d0002", "f0002"]
