@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
 import { EditorUiComponent } from './editor-ui/editor-ui.component';
 import { FileTabsComponent } from './file-tabs/file-tabs.component';
@@ -11,7 +12,8 @@ import { FileTabsComponent } from './file-tabs/file-tabs.component';
     FileTabsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   exports: [
     EditorUiComponent
