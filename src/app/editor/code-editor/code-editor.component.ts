@@ -5,11 +5,9 @@ import { FileDB } from 'types/videoInfo';
 
 @Component({
   selector: 'app-code-editor',
-  templateUrl: './code-editor.component.html',
-  styleUrls: ['./code-editor.component.sass']
+  template: ''
 })
 export class CodeEditorComponent implements AfterViewInit {
-  @ViewChild('editorContainer', {static: false}) container!: ElementRef;
   @Input()
   set selectedFile(file: FileDB | null) {
     if (!file) return;
@@ -24,10 +22,11 @@ export class CodeEditorComponent implements AfterViewInit {
     private contentService: ContentService,
     private editorViewService: EditorViewService,
     private renderer: Renderer2,
+    private el: ElementRef
   ) {
     this.view = this.editorViewService.getView();
   }
   ngAfterViewInit(): void {
-    this.renderer.appendChild(this.container.nativeElement, this.view);
+    this.renderer.appendChild(this.el.nativeElement, this.view);
   }
 }
