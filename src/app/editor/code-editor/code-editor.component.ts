@@ -10,11 +10,10 @@ import { FileDB } from 'types/videoInfo';
 export class CodeEditorComponent implements AfterViewInit {
   @Input()
   set selectedFile(file: FileDB | null) {
-    if (!file) return;
-    this.contentService.getContent(file.itemId)
-      .then(content => {
-        this.view = this.editorViewService.getView(content)
-      });
+    const contentPromise = file ? this.contentService.getContent(file.itemId) : new Promise<string>((resolve, _) => resolve(''));
+    contentPromise.then(content => {
+      this.view = this.editorViewService.getView(content)
+    });
   }
   private view: HTMLElement;
   

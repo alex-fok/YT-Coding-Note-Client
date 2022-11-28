@@ -41,7 +41,7 @@ export class EditorViewService {
   constructor() { }
 
   getView(content?: string): HTMLElement {
-    if (content)
+    if (content !== undefined)
       this.view.setState(EditorState.create({doc: content, ...config}));
     return this.view.dom;
   }

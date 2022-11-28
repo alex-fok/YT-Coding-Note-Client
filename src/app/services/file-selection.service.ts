@@ -8,11 +8,11 @@ import type { FileDB } from 'types/videoInfo';
   providedIn: 'root'
 })
 export class FileSelectionService {
-  fileViewedId = '';
-  fileViewed$ = new Subject<FileDB>();
-  dirSelected$ = new Subject<string>();
-  filesOpened: FileDB[] = []
-  filesOpened$ = new Subject<FileDB[]>();
+  private fileViewedId = '';
+  private fileViewed$ = new Subject<FileDB | null>();
+  private dirSelected$ = new Subject<string>();
+  private filesOpened: FileDB[] = []
+  private filesOpened$ = new Subject<FileDB[]>();
   
   constructor(private fileStructService: FileStructService) {
     this.fileStructService.getFileStructSubject().subscribe(fileStruct => {
@@ -58,6 +58,17 @@ export class FileSelectionService {
   removeFile(id: string) {
     this.filesOpened = this.filesOpened.filter(file => file.id !== id);
     this.filesOpened$.next(this.filesOpened);
+
+    if (this.fileViewedId === id) {
+      const [fileViewed, viewedId] = this.filesOpened.length ?
+        [
+          this.filesOpened[this.filesOpened.length - 1],
+          this.filesOpened[this.filesOpened.length - 1].id
+        ] : [null, '']
+        this.fileViewedId = viewedId;
+      this.fileViewed$.next(fileViewed);
+      this.dirSelected$.next(viewedId);
+    }
   }
   private getDBObj(id: string) {
     return this.fileStructService.getFileSysDBObj(id);

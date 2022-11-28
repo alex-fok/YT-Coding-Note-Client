@@ -12,7 +12,7 @@ export class EditorUiComponent implements OnInit {
   constructor(private fileSelectionService: FileSelectionService) { }
   
   ngOnInit(): void {
-    this.fileSelectionService.fileViewed$.subscribe(file => {
+    this.fileSelectionService.getFileViewedSubject().subscribe(file => {
       this.selectedFile = file;
     })
   }

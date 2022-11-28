@@ -15,11 +15,11 @@ export class FileTabsComponent implements OnInit {
   constructor(private fileSelectionService: FileSelectionService) { }
 
   ngOnInit(): void {
-    this.fileSelectionService.filesOpened$.subscribe(filesOpened => {
+    this.fileSelectionService.getFilesOpenedSubject().subscribe(filesOpened => {
       this.filesOpened = filesOpened
     })
-    this.fileSelectionService.fileViewed$.subscribe(file => {
-      if (file) this.selectedId = file.id
+    this.fileSelectionService.getFileViewedSubject().subscribe(file => {
+      this.selectedId = file ? file.id : ''
     })
   }
   selectFile(id: string) {
