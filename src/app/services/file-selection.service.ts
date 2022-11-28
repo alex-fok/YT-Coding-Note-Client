@@ -57,6 +57,7 @@ export class FileSelectionService {
   }
   removeFile(id: string) {
     this.filesOpened = this.filesOpened.filter(file => file.id !== id);
+    this.filesOpened$.next(this.filesOpened);
   }
   private getDBObj(id: string) {
     return this.fileStructService.getFileSysDBObj(id);

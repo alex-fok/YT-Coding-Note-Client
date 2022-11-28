@@ -25,4 +25,7 @@ export class FileTabsComponent implements OnInit {
   selectFile(id: string) {
     this.selectFileEvent.emit(id)
   }
+  closeTab(id:string) {
+    this.fileSelectionService.removeFile(id)
+  }
 }
