@@ -7,16 +7,8 @@
     ><span class='text'>{{file.name}}</span><app-icon
         name="fa-x"
         class="close"
-        [width]="tabHeight"
-        [height]="tabHeight"
-        [ngStyle]="{
-          'height': tabHeight * 1.5 + 'rem',
-          'width': tabHeight * 1.5 + 'rem',
-          'border-radius': hovered === file.id ? '50%' : '0%',
-          'background-color': hovered === file.id ? '#5e5e5e' : 'transparent'
-        }"
-        (mouseenter)="setHover(file.id)"
-        (mouseleave)="setHover('')"
+        [width]=".8"
+        [height]=".8"
       ></app-icon>
     </span>
   </ng-container>

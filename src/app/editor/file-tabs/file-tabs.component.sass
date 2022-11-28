@@ -1,10 +1,12 @@
+$tab-size : 1.2rem
+  
 .tab
   display: inline-block
   padding: .5em .5em
   background-color: #3c3c3c
   cursor: pointer
   user-select: none
-  line-height: 1.2rem
+  line-height: $tab-size
 
 .text
   display: inline-block
@@ -16,5 +18,11 @@
 .close
   display: inline-block
   position: relative
+  height: $tab-size
+  width: $tab-size
   margin-left: .7em
   vertical-align: middle
+
+.close:hover
+  border-radius: 50%
+  background-color: #5e5e5e
