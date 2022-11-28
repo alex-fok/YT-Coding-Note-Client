@@ -1,7 +1,20 @@
-<svg
-  attr.width={{width}}
-  attr.height={{height}}
-  attr.fill={{fill}}
+<div
+  [ngStyle]="{
+    'width': width ? width * 1.5 + 'rem' : 1 + 'rem',
+    'height': height ? height * 1.5 + 'rem' : 1 + 'rem'
+  }"
 >
-  <use attr.href='assets/icons/{{name}}.svg#{{name}}'></use>
-</svg>
+  <svg
+    attr.width="{{width}}rem"
+    attr.height="{{height}}rem"
+    attr.fill={{fill}}
+    [ngStyle]="{
+      'margin-top': height ? height * -.5 + 'rem' : -.5 + 'rem',
+      'margin-left': width ? width * -.5 + 'rem' : -.5 + 'rem'
+    }"
+  >
+    <use
+      attr.href='assets/icons/{{name}}.svg#{{name}}'
+    ></use>
+  </svg>
+</div>

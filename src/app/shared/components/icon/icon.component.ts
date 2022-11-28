@@ -6,10 +6,13 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./icon.component.sass']
 })
 export class IconComponent {
-  @Input() width?: string = '1rem';
-  @Input() height?: string = '1rem';
+  @Input() width?: number;
+  @Input() height?: number;
   @Input() fill?: string = 'white';
   @Input() class?: string = '';
-  @Input() name: string = 'x';
-  constructor() {}
+  @Input() name: string = '';
+  constructor() {
+    this.width = this.width ? this.width : 1
+    this.height = this.height ? this.height: 1
+  }
 }
