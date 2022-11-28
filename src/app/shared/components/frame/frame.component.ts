@@ -1,15 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'layout-frame',
+  selector: 'app-frame',
   templateUrl: './frame.component.html',
   styleUrls: ['./frame.component.sass']
 })
-export class FrameComponent implements OnInit {
+export class FrameComponent {
   @Input() title = '...';
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
