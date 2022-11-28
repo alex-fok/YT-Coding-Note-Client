@@ -10,8 +10,10 @@ import { FileDB } from 'types/videoInfo';
 export class FileTabsComponent implements OnInit {
   @Output() selectFileEvent = new EventEmitter<string>();
   filesOpened: FileDB[] = [];
+  tabHeight = .8;
   selectedId = '';
-  
+  hovered = '';
+
   constructor(private fileSelectionService: FileSelectionService) { }
 
   ngOnInit(): void {
@@ -24,5 +26,8 @@ export class FileTabsComponent implements OnInit {
   }
   selectFile(id: string) {
     this.selectFileEvent.emit(id)
+  }
+  setHover(id: string) {
+    this.hovered = id
   }
 }
