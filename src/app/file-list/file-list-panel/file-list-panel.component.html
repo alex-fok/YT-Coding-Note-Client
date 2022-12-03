@@ -1,4 +1,8 @@
-<ul>
+<ul
+  [ngStyle] = "{
+    'min-width.px': minWidth
+  }"
+>
   <li *ngFor='let file of rootFiles'>
     <app-file-list-panel-item
       id = {{file.id}}
