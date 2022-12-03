@@ -1,5 +1,5 @@
 /// <reference types="youtube" />
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, HostListener } from '@angular/core';
 
 let isReady = false;
 
@@ -14,6 +14,8 @@ export class YtVideoComponent implements OnInit, OnDestroy {
   @Output() currentUpdated = new EventEmitter<number>();  
   player: YT.Player | undefined;
   interval: NodeJS.Timer;
+  width: number = 854;
+  height: number = 480;
 
   constructor() {
     this.interval = setInterval(()=>{
@@ -21,6 +23,7 @@ export class YtVideoComponent implements OnInit, OnDestroy {
         this.currentUpdated.emit(Math.trunc(this.player.getCurrentTime()))
       }
     }, 1000)
+    this.getVideoSize()
   }
   ngOnInit(): void {
     if (!isReady) {
@@ -32,6 +35,11 @@ export class YtVideoComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     clearInterval(this.interval);
+  }
+  @HostListener('window:resize')
+  getVideoSize() {
+    this.width = window.innerWidth / 2;
+    this.height = this.width / 16 * 9;
   }
   onReady(event: YT.PlayerEvent): void {
     this.player = event.target
