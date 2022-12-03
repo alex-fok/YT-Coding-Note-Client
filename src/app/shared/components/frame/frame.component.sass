@@ -1,13 +1,26 @@
 @import 'mixins'
+$title-padding: 1.2
+$font-size: 1.2
+:host
+  position: relative
+  &:not(:last-child):after
+    content:''
+    position: absolute
+    right: 1px
+    top: $title-padding * .5rem
+    width: 1px
+    height: ($title-padding + $font-size) * 1rem
+    border-right: 1px solid #6b6b6b
+
 .frame 
   @include flex(column)
   flex-grow: 1
+  height: 100%
+  position: relative
 
-.frame-title
+.title
   background-color: #3c3c3c
   color: #ffffff
+  font-size: $font-size * 1rem
   border-bottom: 1px solid #bcbcbc
-  padding: 3px 10px
-
-ng-content
-  width:100%
+  padding: $title-padding * 1rem $title-padding * 1rem

@@ -17,7 +17,7 @@ const darkTheme = EditorView.theme({
   ".cm-gutters": {
     backgroundColor: "#212121",
     color: "#d0d0d0",
-    padding: "0em 1em"
+    padding: "0rem 1rem"
   },
   ".cm-activeLine": {
     backgroundColor: "#3c3c3c"
