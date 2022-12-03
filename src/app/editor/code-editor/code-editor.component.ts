@@ -24,6 +24,10 @@ export class CodeEditorComponent implements AfterViewInit {
     private el: ElementRef
   ) {
     this.view = this.editorViewService.getView();
+    const resizeObserver = new ResizeObserver(entries => {
+      this.view = this.editorViewService.resetHeight(entries[0].contentRect.height)
+    })
+    resizeObserver.observe(this.el.nativeElement)
   }
   ngAfterViewInit(): void {
     this.renderer.appendChild(this.el.nativeElement, this.view);
