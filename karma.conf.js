@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/yt-coding-note-client'),
+      dir: require('path').join(__dirname, './coverage/yt_coding_note_client'),
       subdir: '.',
       reporters: [
         { type: 'html' },

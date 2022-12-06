@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'YT-Coding-Note-Client';
+  title = 'yt_coding_note_client';
 }

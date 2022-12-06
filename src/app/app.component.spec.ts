@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'YT-Coding-Note-Client'`, () => {
+  it(`should have as title 'yt_coding_note_client'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('YT-Coding-Note-Client');
+    expect(app.title).toEqual('yt_coding_note_client');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('YT-Coding-Note-Client app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('yt_coding_note_client app is running!');
   });
 });
