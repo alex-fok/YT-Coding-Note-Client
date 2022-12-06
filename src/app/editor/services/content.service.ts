@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import type { FileContent } from 'types/fileContent';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ContentService {
   }
   private async getFile(itemId: string) {
     const files: FileContent[] =
-      await fetch(`http://localhost:3000/files?id=${itemId}`).then(result => result.json());
+      await fetch(`${environment.host}/files?id=${itemId}`).then(result => result.json());
 
     this.fileStore[itemId] = files[0]?.content;
     return files[0]?.content;
