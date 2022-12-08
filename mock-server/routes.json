@@ -1,0 +1,5 @@
+{
+  "/api/*": "/$1",
+  "/videos?videoId=:id": "/videos?videoId=:id&singular=1",
+  "/files?id=:id": "/files?id=:id&singular=1"
+}

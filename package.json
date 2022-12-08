@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "mock-server": "json-server --watch mock-server/db.json"
+    "mock-server": "cd mock-server && json-server --watch db.json --middlewares singular.js --routes routes.json"
   },
   "private": true,
   "dependencies": {

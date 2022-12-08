@@ -15,10 +15,10 @@ export class ContentService {
     return content || '';
   }
   private async getFile(itemId: string) {
-    const files: FileContent[] =
-      await fetch(`${environment.host}/files?id=${itemId}`).then(result => result.json());
+    const files: FileContent =
+      await fetch(`${environment.host}/api/files?id=${itemId}`).then(result => result.json());
 
-    this.fileStore[itemId] = files[0]?.content;
-    return files[0]?.content;
+    this.fileStore[itemId] = files?.content;
+    return files?.content;
   }
 }

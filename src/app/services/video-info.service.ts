@@ -14,9 +14,8 @@ export class VideoInfoService {
   }
   async updateVideoInfo(id: string) {
     const vidInfo:VideoDB | undefined = await
-      fetch(`${environment.host}/videos?videoId=${id}`)
+      fetch(`${environment.host}/api/videos?videoId=${id}`)
       .then(resp => resp.json())
-      .then(arr => arr[0])
       .catch(err => {console.error(err)})
 
     if (vidInfo)
